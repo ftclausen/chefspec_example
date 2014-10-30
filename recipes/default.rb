@@ -1,7 +1,9 @@
 package 'example'
 
 # Our LWRP
-chefspec_example 'widget1'
+chefspec_example 'widget1' do
+  action [ :doit ]
+end
 
 template '/etc/example.conf' do
   source 'example.conf.erb'

@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe 'chefspec_example::default' do
   let(:chef_run) do
-    ChefSpec::Runner.new(platform: 'ubuntu', version: '12.04')
+    ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '12.04')
       .converge('chefspec_example::default')
     end
 
   it 'should create a chefspec_example resource' do
-    expect(chef_run).to go_and_doit('widget1')
+    expect(chef_run).to create_chefspec_example('widget1').with(
+      action: [ :doit ]
+    )
   end
 
   it 'should create the template' do
